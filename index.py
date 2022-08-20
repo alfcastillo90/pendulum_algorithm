@@ -102,9 +102,9 @@ result.write("Cantidad de columnas seleccionadas: " +
 print("Best solucion: \n"+str(bestFitness.tolist()))
 result.write("Best solucion: \n"+str(bestFitness.tolist())+"\n")
 print("------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
-tiempoFinal = time.time()
-tiempoEjecucion = tiempoFinal - tiempoInicial
-print("Tiempo de ejecucion (s): "+str(tiempoEjecucion))
-result.write("Tiempo de ejecucion (s): "+str(tiempoEjecucion))
+finalDate = time.time()
+executionTime = finalDate - startedDate
+print("Tiempo de ejecucion (s): "+str(executionTime))
+result.write("Tiempo de ejecucion (s): "+str(executionTime))
 result.close()
 print("------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
