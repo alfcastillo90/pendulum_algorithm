@@ -1,0 +1,9 @@
+iteracion: 0, best fitness: 22820.0, tiempo iteracion (s): 0.2796938419342041
+iteracion: 1, best fitness: 22820.0, tiempo iteracion (s): 0.16406917572021484
+iteracion: 2, best fitness: 22820.0, tiempo iteracion (s): 0.17929363250732422
+iteracion: 3, best fitness: 22820.0, tiempo iteracion (s): 0.18715429306030273
+iteracion: 4, best fitness: 22820.0, tiempo iteracion (s): 0.2594761848449707
+iteracion: 5, best fitness: 22820.0, tiempo iteracion (s): 0.19018793106079102
+iteracion: 6, best fitness: 22820.0, tiempo iteracion (s): 0.5671873092651367
+iteracion: 7, best fitness: 22820.0, tiempo iteracion (s): 0.17896604537963867
+iteracion: 8, best fitness: 22820.0, tiempo iteracion (s): 0.1680924892425537

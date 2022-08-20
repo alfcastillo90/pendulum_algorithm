@@ -1,8 +1,7 @@
 import numpy as np
 
 def s4(initialPopulation):
-    populationMatrix = np.zeros(initialPopulation)
-    return np.divide(1, (1 + np.exp(np.divide(-1 * populationMatrix, 3))))
+    return np.divide(1, (1 + np.exp(np.divide(-1 * initialPopulation, 3))))
 
 def elitist(bestRow, binaryPopulationMatrix, initialPopulation, s4Result):
     matrixRand = np.random.uniform(

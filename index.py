@@ -2,7 +2,7 @@ import numpy as np
 import time
 from dotenv import load_dotenv
 import os
-from fitness import fitness
+import fitness as Fitness
 import read_instance as Instance
 import check_solution as CheckSolution
 import repair as Repair
@@ -15,7 +15,7 @@ scpDirectory = os.getenv('SCP_DIR')
 resultsDir = os.getenv('RESULTS_DIR')
 startedDate = time.time()
 
-challenge = resultsDir.split("/")[1].split(".")[0]
+challenge = scpDirectory.split("/")[1].split(".")[0]
 result = open(resultsDir+"PSA_"+challenge+".txt", "w")
 
 # Leemos la instancia
@@ -50,10 +50,10 @@ for position in range(initialPopulation.__len__()):
         binaryPopulationMatrix[position] = Repair.complex(
             setCoveringProblem, binaryPopulationMatrix[position])
 
-    fitnessVector[position] = fitness.fitness(
+    fitnessVector[position] = Fitness.verify(
         setCoveringProblem, binaryPopulationMatrix[position])
 
-solutionsRanking = np.argsort(fitness)  # rankings de los mejores fitnes
+solutionsRanking = np.argsort(fitnessVector)  # rankings de los mejores fitnes
 bestRowAux = solutionsRanking[0]
 
 # comienzo de la metaheuristica
@@ -61,12 +61,12 @@ for iteration in range(0, maximunIterations):
 
     processTime = time.process_time()
     timerStart = time.time()
-
+    a = 100
     best = initialPopulation[bestRowAux]
     bestBinary = binaryPopulationMatrix[bestRowAux]
-    bestFitness = np.min(fitness)
+    bestFitness = np.min(fitnessVector)
     initialPopulation = PendulumAlgorithm.iterate_with_pendulum(
-        initialPopulation, best, dimensions, iteration, maximunIterations)
+        initialPopulation, best.tolist(), dimensions, iteration, maximunIterations)
 
     # Transferencia y binarizacion
     for i in range(initialPopulation.__len__()):
@@ -76,21 +76,21 @@ for iteration in range(0, maximunIterations):
             bestRow, binaryPopulationMatrix, initialPopulation, s4Result)
         flag, aux = CheckSolution.verify(
             setCoveringProblem, binaryPopulationMatrix[i])
-        fitnessVector[i] = fitness.fitness(
+        fitnessVector[i] = Fitness.verify(
             setCoveringProblem, binaryPopulationMatrix[i])
     solutionsRanking = np.argsort(fitnessVector)
 
     if fitnessVector[bestRowAux] > bestFitness:
         fitnessVector[bestRowAux] = bestFitness
         binaryPopulationMatrix[bestRowAux] = bestBinary
-    bestFitness = np.min(fitness)
+    bestFitness = np.min(fitnessVector)
 
     timerFinal = time.time()
     # calculo mi tiempo para la iteracion t
     timeEjecuted = timerFinal - timerStart
-    print("iteracion: "+str(iter)+", best fitness: " +
+    print("iteracion: "+str(iteration)+", best fitness: " +
           str(bestFitness)+", tiempo iteracion (s): "+str(timeEjecuted))
-    result.write("iteracion: "+str(iter)+", best fitness: " +
+    result.write("iteracion: "+str(iteration)+", best fitness: " +
                     str(bestFitness)+", tiempo iteracion (s): "+str(timeEjecuted)+"\n")
 
 print("------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
