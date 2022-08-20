@@ -1,15 +1,14 @@
 import numpy as np
 
+def s4(initialPopulation):
+    populationMatrix = np.zeros(initialPopulation)
+    return np.divide(1, (1 + np.exp(np.divide(-1 * populationMatrix, 3))))
 
-def s4(populationMatix):
-    return np.divide(1, (1 + np.exp(np.divide(-1 * populationMatix, 3))))
-
-
-def elitist(binaryPopulationMatrix, populationMatix, solutionsRanking):
+def elitist(bestRow, binaryPopulationMatrix, initialPopulation, s4Result):
     matrixRand = np.random.uniform(
-        low=0.0, high=1.0, size=populationMatix.shape)
-    conditionMatrix = np.greater(np.zeros(populationMatix.shape), matrixRand)
-    bestIndividual = binaryPopulationMatrix[np.argmin(solutionsRanking)]
+        low=0.0, high=1.0, size=initialPopulation.shape)
+    conditionMatrix = np.greater(np.zeros(s4Result.shape), matrixRand)
+    bestIndividual = binaryPopulationMatrix[bestRow]
 
     binaryPopulationMatrix = np.zeros(binaryPopulationMatrix.shape)
     binaryPopulationMatrix = np.where(
