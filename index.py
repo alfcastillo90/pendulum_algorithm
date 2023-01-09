@@ -23,7 +23,7 @@ setCoveringProblem = Instance.readInstance(scpDirectory)
 coverageMatrix = setCoveringProblem['coverageMatrix']
 coverageCostVector = setCoveringProblem['coverageCostVector']
 dimensions = len(coverageCostVector)
-populationSize = 40
+populationSize = 10
 maximunIterations = 100
 dictionary = {}
 binarizationMethods = ['S4', 'Elitist']
@@ -58,10 +58,8 @@ bestRowAux = solutionsRanking[0]
 
 # comienzo de la metaheuristica
 for iteration in range(0, maximunIterations):
-
     processTime = time.process_time()
     timerStart = time.time()
-    a = 100
     best = initialPopulation[bestRowAux]
     bestBinary = binaryPopulationMatrix[bestRowAux]
     bestFitness = np.min(fitnessVector)

@@ -13,9 +13,9 @@ def agent_position(bestPosition, previousPosition, pend):
 def iterate_with_pendulum(agents, bestPosition, dimensions, iteration, maximumIterations):
     for i in range(agents.__len__()):
         for j in range(dimensions):
-            rand = random.uniform(0.0, 1.0)
-            pend = calculate_pend(iteration, maximumIterations, rand)
-            agents[i][j] = agent_position(bestPosition[j], agents[i][j-1], pend)
+          rand = random.uniform(0.0, 1.0)
+          pend = calculate_pend(iteration, maximumIterations, rand)
+          agents[i][j] = agent_position(bestPosition[j], agents[i][j-1], pend)
     return np.array(agents)
             
         
